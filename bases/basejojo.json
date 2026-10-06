@@ -1,0 +1,266 @@
+[
+  {
+    "id": 1,
+    "nome": "Yoichi Isagi",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Metavision",
+    "apelido": "O Protagonista"
+  },
+  {
+    "id": 2,
+    "nome": "Rin Itoshi",
+    "time": "Paris X Gen",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Super Curve Shot",
+    "apelido": "O Destruidor"
+  },
+  {
+    "id": 3,
+    "nome": "Seishiro Nagi",
+    "time": "Manshine City",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Controle de Bola",
+    "apelido": "Lazy Genius"
+  },
+  {
+    "id": 4,
+    "nome": "Shoei Barou",
+    "time": "Ubers",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Olhos do Predador",
+    "apelido": "O Rei"
+  },
+  {
+    "id": 5,
+    "nome": "Meguru Bachira",
+    "time": "FC Barcha",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Drible da Abelha",
+    "apelido": "A Abelha"
+  },
+  {
+    "id": 6,
+    "nome": "Sae Itoshi",
+    "time": "Re Al",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Perfect Pass, Metavision",
+    "apelido": "Prodígio"
+  },
+  {
+    "id": 7,
+    "nome": "Ryusei Shidou",
+    "time": "Paris X Gen",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Olhos do Predador",
+    "apelido": "O Demônio"
+  },
+  {
+    "id": 8,
+    "nome": "Michael Kaiser",
+    "time": "Bastard München",
+    "nacionalidade": "Alemã",
+    "habilidade": "Kaiser Impact",
+    "apelido": "O Imperador"
+  },
+  {
+    "id": 9,
+    "nome": "Noel Noa",
+    "time": "Bastard München",
+    "nacionalidade": "Francesa",
+    "habilidade": "Ambidestria",
+    "apelido": "O Melhor Atacante do Mundo"
+  },
+  {
+    "id": 10,
+    "nome": "Julian Loki",
+    "time": "Paris X Gen",
+    "nacionalidade": "Francesa",
+    "habilidade": "Velocidade Divina",
+    "apelido": "O Deus da Velocidade"
+  },
+  {
+    "id": 11,
+    "nome": "Lavinho",
+    "time": "FC Barcha",
+    "nacionalidade": "Brasileira",
+    "habilidade": "Drible",
+    "apelido": "O Danzarino"
+  },
+  {
+    "id": 12,
+    "nome": "Reo Mikage",
+    "time": "Manshine City",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Cópia",
+    "apelido": "O Camaleão"
+  },
+  {
+    "id": 13,
+    "nome": "Rensuke Kunigami",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Left Leg Shoot",
+    "apelido": "Wild Card"
+  },
+  {
+    "id": 14,
+    "nome": "Kenyu Yukimiya",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Street Dribble",
+    "apelido": "Míope"
+  },
+  {
+    "id": 15,
+    "nome": "Don Lorenzo",
+    "time": "Ubers",
+    "nacionalidade": "Italiana",
+    "habilidade": "Zombie Tackle",
+    "apelido": "The Zombie"
+  },
+  {
+    "id": 16,
+    "nome": "Hyoma Chigiri",
+    "time": "Manshine City",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Velocidade",
+    "apelido": "Princesa"
+  },
+  {
+    "id": 17,
+    "nome": "Tabito Karasu",
+    "time": "Paris X Gen",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Ball Keeping",
+    "apelido": "O Corvo"
+  },
+  {
+    "id": 18,
+    "nome": "Eita Otoya",
+    "time": "FC Barcha",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Stealthy Step",
+    "apelido": "Ninja"
+  },
+  {
+    "id": 19,
+    "nome": "Yo Hiori",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Long Pass",
+    "apelido": "O Atirador"
+  },
+  {
+    "id": 20,
+    "nome": "Oliver Aiku",
+    "time": "Ubers",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Defensive Awareness",
+    "apelido": "A Cobra"
+  },
+  {
+    "id": 21,
+    "nome": "Ikki Niko",
+    "time": "Ubers",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Metavision",
+    "apelido": "O Olheiro"
+  },
+  {
+    "id": 22,
+    "nome": "Jyubei Aryu",
+    "time": "Ubers",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Jumper",
+    "apelido": "O Fashionista"
+  },
+  {
+    "id": 23,
+    "nome": "Jingo Raichi",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Man Marking",
+    "apelido": "O Monstro"
+  },
+  {
+    "id": 24,
+    "nome": "Gin Gagamaru",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Super Reflexes",
+    "apelido": "O Goleiro Selvagem"
+  },
+  {
+    "id": 25,
+    "nome": "Ranze Kurona",
+    "time": "Bastard München",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Planet Hotline",
+    "apelido": "Tubarão"
+  },
+  {
+    "id": 26,
+    "nome": "Alexis Ness",
+    "time": "Bastard München",
+    "nacionalidade": "Alemã",
+    "habilidade": "Drible e Passe",
+    "apelido": "O Mago"
+  },
+  {
+    "id": 27,
+    "nome": "Aoshi Tokimitsu",
+    "time": "Paris X Gen",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Força Física",
+    "apelido": "O Ansioso"
+  },
+  {
+    "id": 28,
+    "nome": "Zantetsu Tsurugi",
+    "time": "Paris X Gen",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Aceleração",
+    "apelido": "O Canhão"
+  },
+  {
+    "id": 29,
+    "nome": "Nijiro Nanase",
+    "time": "Paris X Gen",
+    "nacionalidade": "Japonesa",
+    "habilidade": "Two-Footed",
+    "apelido": "O Polivalente"
+  },
+  {
+    "id": 30,
+    "nome": "Charles Chevalier",
+    "time": "Paris X Gen",
+    "nacionalidade": "Francesa",
+    "habilidade": "Passe",
+    "apelido": "O Coração do PXG"
+  },
+  {
+    "id": 31,
+    "nome": "Marc Snuffy",
+    "time": "Ubers",
+    "nacionalidade": "Italiana",
+    "habilidade": "Visão de Jogo",
+    "apelido": "O Mestre"
+  },
+  {
+    "id": 32,
+    "nome": "Chris Prince",
+    "time": "Manshine City",
+    "nacionalidade": "Inglesa",
+    "habilidade": "Superhuman Physique",
+    "apelido": "O Superman"
+  },
+  {
+    "id": 33,
+    "nome": "Agi",
+    "time": "Manshine City",
+    "nacionalidade": "Inglesa",
+    "habilidade": "Controle de Bola",
+    "apelido": "O Gigante"
+  }
+]
