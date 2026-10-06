@@ -1,3260 +1,2576 @@
-<!DOCTYPE html>
+/* =========================================================
+BLUE LOCK // API LAB
+MAIN STYLESHEET
+========================================================= */
 
-<html lang="pt-BR">
+/* =========================================================
+RESET
+========================================================= */
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+min-height: 100vh;
+background:
+radial-gradient(
+circle at 85% 10%,
+rgba(0, 119, 255, 0.14),
+transparent 30%
+),
+radial-gradient(
+circle at 10% 90%,
+rgba(0, 78, 180, 0.10),
+transparent 30%
+),
+#050a12;
 
 ```
-<meta
-    name="description"
-    content="Blue Lock API Lab — laboratório de testes e análise de uma API REST."
->
+color: #eef6ff;
 
-<meta name="theme-color" content="#07111f">
+font-family:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
 
-<title>BLUE LOCK // API LAB</title>
+line-height: 1.5;
+
+overflow-x: hidden;
 ```
 
-</head>
+}
 
-<body>
+/* =========================================================
+VARIABLES
+========================================================= */
+
+:root {
 
 ```
-<!-- =====================================================
-     APLICAÇÃO
-====================================================== -->
-
-<div class="app">
-
-    <!-- =================================================
-         HEADER
-    ================================================== -->
-
-    <header class="site-header">
-
-        <div class="header-inner">
-
-            <div class="brand">
-
-                <div class="brand-mark">
-                    BL
-                </div>
-
-                <div class="brand-information">
-
-                    <span class="brand-overline">
-                        BLUE LOCK PROJECT
-                    </span>
-
-                    <h1>
-                        API LAB
-                    </h1>
-
-                    <p>
-                        Striker Database & HTTP Training System
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="system-status">
-
-                <span class="status-indicator"></span>
-
-                <div>
-                    <span class="status-label">
-                        SYSTEM STATUS
-                    </span>
-
-                    <strong>
-                        ONLINE
-                    </strong>
-                </div>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- =================================================
-         IDENTIDADE / CONTEXTO
-    ================================================== -->
-
-    <section class="project-banner">
-
-        <div class="banner-content">
-
-            <span class="banner-label">
-                EGO // DATA CONTROL
-            </span>
-
-            <h2>
-                Domine os dados.
-                <span>Supere os outros.</span>
-            </h2>
-
-            <p>
-                Ambiente de treinamento para execução,
-                análise e monitoramento de requisições HTTP.
-            </p>
-
-        </div>
-
-
-        <div class="active-database">
-
-            <span>
-                ACTIVE DATABASE
-            </span>
-
-            <strong id="activeBaseName">
-                dados.json
-            </strong>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         NAVEGAÇÃO PRINCIPAL
-    ================================================== -->
-
-    <nav
-        class="main-navigation"
-        aria-label="Métodos da API"
-    >
-
-        <div class="navigation-header">
-
-            <span>
-                TRAINING MENU
-            </span>
-
-            <small>
-                HTTP OPERATIONS
-            </small>
-
-        </div>
-
-
-        <div class="navigation-tabs">
-
-            <button
-                type="button"
-                class="tab active"
-                data-tab="base"
-                onclick="abrirAba('base')"
-            >
-
-                <span class="tab-index">
-                    01
-                </span>
-
-                <span class="tab-content">
-
-                    <strong>
-                        DATABASE
-                    </strong>
-
-                    <small>
-                        Base de dados
-                    </small>
-
-                </span>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="get"
-                onclick="abrirAba('get')"
-            >
-
-                <span class="tab-index">
-                    02
-                </span>
-
-                <span class="tab-content">
-
-                    <strong>
-                        GET
-                    </strong>
-
-                    <small>
-                        Consultar
-                    </small>
-
-                </span>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="post"
-                onclick="abrirAba('post')"
-            >
-
-                <span class="tab-index">
-                    03
-                </span>
-
-                <span class="tab-content">
-
-                    <strong>
-                        POST
-                    </strong>
-
-                    <small>
-                        Criar
-                    </small>
-
-                </span>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="edit"
-                onclick="abrirAba('edit')"
-            >
-
-                <span class="tab-index">
-                    04
-                </span>
-
-                <span class="tab-content">
-
-                    <strong>
-                        PUT / PATCH
-                    </strong>
-
-                    <small>
-                        Atualizar
-                    </small>
-
-                </span>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="delete"
-                onclick="abrirAba('delete')"
-            >
-
-                <span class="tab-index">
-                    05
-                </span>
-
-                <span class="tab-content">
-
-                    <strong>
-                        DELETE
-                    </strong>
-
-                    <small>
-                        Excluir
-                    </small>
-
-                </span>
-
-            </button>
-
-        </div>
-
-    </nav>
-
-
-    <!-- =================================================
-         MAIN
-    ================================================== -->
-
-    <main class="main-content">
-
-        <div class="workspace">
-
-
-            <!-- =================================================
-                 DATABASE
-            ================================================== -->
-
-            <section
-                class="tab-panel active"
-                id="tab-base"
-            >
-
-                <header class="panel-header">
-
-                    <div>
-
-                        <span class="panel-code">
-                            TRAINING AREA // 01
-                        </span>
-
-                        <h2>
-                            STRIKER DATABASE
-                        </h2>
-
-                        <p>
-                            Selecione a base de dados que será utilizada
-                            durante o treinamento.
-                        </p>
-
-                    </div>
-
-
-                    <div class="panel-number">
-                        01
-                    </div>
-
-                </header>
-
-
-                <div class="panel-body">
-
-
-                    <!-- BASE ATUAL -->
-
-                    <section class="data-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    DATABASE CONTROL
-                                </span>
-
-                                <h3>
-                                    Base ativa
-                                </h3>
-
-                            </div>
-
-                            <strong
-                                id="basesCount"
-                                class="data-count"
-                            >
-                                0/5
-                            </strong>
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label for="baseSelect">
-                                Selecionar database
-                            </label>
-
-                            <select
-                                id="baseSelect"
-                                onchange="trocarBase()"
-                            >
-
-                                <option value="dados.json">
-                                    Base padrão
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <button
-                            type="button"
-                            id="removeBaseBtn"
-                            class="btn btn-danger"
-                            onclick="removerBase()"
-                            disabled
-                        >
-                            REMOVER DATABASE
-                        </button>
-
-                    </section>
-
-
-                    <div class="content-divider"></div>
-
-
-                    <!-- UPLOAD -->
-
-                    <section class="data-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    NEW DATA SOURCE
-                                </span>
-
-                                <h3>
-                                    Adicionar database
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="upload-grid">
-
-                            <div class="field">
-
-                                <label for="baseFile">
-                                    Arquivo JSON
-                                </label>
-
-                                <input
-                                    type="file"
-                                    id="baseFile"
-                                    accept=".json,application/json"
-                                >
-
-                            </div>
-
-
-                            <button
-                                type="button"
-                                id="uploadBtn"
-                                class="btn btn-primary"
-                                onclick="enviarBase()"
-                            >
-                                ANEXAR DATABASE
-                            </button>
-
-                        </div>
-
-                        <p class="field-help">
-                            Limite: 5 bases adicionais.
-                            Tamanho máximo: 2 MB por arquivo.
-                        </p>
-
-                    </section>
-
-
-                    <!-- EGO MESSAGE -->
-
-                    <aside class="ego-message">
-
-                        <span class="ego-label">
-                            EGO SYSTEM
-                        </span>
-
-                        <p>
-                            "Um verdadeiro striker precisa saber
-                            exatamente quais dados possui em campo."
-                        </p>
-
-                    </aside>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 GET
-            ================================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-get"
-            >
-
-                <header class="panel-header">
-
-                    <div>
-
-                        <span class="panel-code">
-                            TRAINING AREA // 02
-                        </span>
-
-                        <h2>
-                            DATA SCOUT
-                        </h2>
-
-                        <p>
-                            Analise e encontre jogadores através
-                            dos parâmetros disponíveis.
-                        </p>
-
-                    </div>
-
-
-                    <div class="http-method method-get">
-                        GET
-                    </div>
-
-                </header>
-
-
-                <div class="panel-body">
-
-                    <section class="data-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    PLAYER SEARCH
-                                </span>
-
-                                <h3>
-                                    Procurar jogadores
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="fields-grid">
-
-                            <div class="field">
-
-                                <label for="getId">
-                                    PLAYER ID
-                                </label>
-
-                                <input
-                                    type="number"
-                                    id="getId"
-                                    min="1"
-                                    placeholder="Ex.: 10"
-                                    oninput="montarUrlGet()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="filtroNome">
-                                    NOME
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="filtroNome"
-                                    placeholder="Ex.: Isagi"
-                                    oninput="montarUrlGet()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="filtroEmail">
-                                    E-MAIL
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="filtroEmail"
-                                    placeholder="@email.com"
-                                    oninput="montarUrlGet()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="filtroIdade">
-                                    IDADE
-                                </label>
-
-                                <input
-                                    type="number"
-                                    id="filtroIdade"
-                                    min="0"
-                                    max="120"
-                                    placeholder="Ex.: 17"
-                                    oninput="montarUrlGet()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="sort">
-                                    ORDENAR POR
-                                </label>
-
-                                <select
-                                    id="sort"
-                                    onchange="montarUrlGet()"
-                                >
-
-                                    <option value="id">
-                                        ID
-                                    </option>
-
-                                    <option value="nome">
-                                        Nome
-                                    </option>
-
-                                    <option value="email">
-                                        E-mail
-                                    </option>
-
-                                    <option value="idade">
-                                        Idade
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="order">
-                                    DIREÇÃO
-                                </label>
-
-                                <select
-                                    id="order"
-                                    onchange="montarUrlGet()"
-                                >
-
-                                    <option value="asc">
-                                        Crescente
-                                    </option>
-
-                                    <option value="desc">
-                                        Decrescente
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    <div class="content-divider"></div>
-
-
-                    <!-- REQUEST URL -->
-
-                    <section class="request-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    REQUEST BUILDER
-                                </span>
-
-                                <h3>
-                                    HTTP Request
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="request-url">
-
-                            <span class="http-method method-get">
-                                GET
-                            </span>
-
-                            <input
-                                class="url-input"
-                                id="getUrl"
-                                type="text"
-                                spellcheck="false"
-                                oninput="urlGetManual=true"
-                            >
-
-                        </div>
-
-
-                        <p class="field-help">
-                            A URL pode ser editada manualmente
-                            para testar diferentes parâmetros.
-                        </p>
-
-
-                        <div class="action-row">
-
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                onclick="executarGet()"
-                            >
-                                EXECUTAR SCOUT
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                onclick="limparGet()"
-                            >
-                                LIMPAR
-                            </button>
-
-                        </div>
-
-                    </section>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 POST
-            ================================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-post"
-            >
-
-                <header class="panel-header">
-
-                    <div>
-
-                        <span class="panel-code">
-                            TRAINING AREA // 03
-                        </span>
-
-                        <h2>
-                            CREATE STRIKER
-                        </h2>
-
-                        <p>
-                            Registre um novo jogador na database.
-                        </p>
-
-                    </div>
-
-
-                    <div class="http-method method-post">
-                        POST
-                    </div>
-
-                </header>
-
-
-                <div class="panel-body">
-
-                    <section class="data-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    PLAYER PROFILE
-                                </span>
-
-                                <h3>
-                                    Novo jogador
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="fields-grid">
-
-                            <div class="field">
-
-                                <label for="postNome">
-                                    NOME
-                                </label>
-
-                                <input
-                                    id="postNome"
-                                    type="text"
-                                    maxlength="100"
-                                    placeholder="Nome do jogador"
-                                    oninput="previewPost()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="postEmail">
-                                    E-MAIL
-                                </label>
-
-                                <input
-                                    id="postEmail"
-                                    type="email"
-                                    placeholder="player@email.com"
-                                    oninput="previewPost()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="postIdade">
-                                    IDADE
-                                </label>
-
-                                <input
-                                    id="postIdade"
-                                    type="number"
-                                    min="0"
-                                    max="120"
-                                    placeholder="17"
-                                    oninput="previewPost()"
-                                >
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    <div class="content-divider"></div>
-
-
-                    <section class="payload-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    GENERATED DATA
-                                </span>
-
-                                <h3>
-                                    JSON Payload
-                                </h3>
-
-                            </div>
-
-                            <span class="payload-label">
-                                REQUEST BODY
-                            </span>
-
-                        </div>
-
-
-                        <pre
-                            class="payload"
-                            id="postPayload"
-                        >{}</pre>
-
-                    </section>
-
-
-                    <div class="action-row">
-
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            onclick="criar()"
-                        >
-                            CREATE STRIKER
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 PUT / PATCH
-            ================================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-edit"
-            >
-
-                <header class="panel-header">
-
-                    <div>
-
-                        <span class="panel-code">
-                            TRAINING AREA // 04
-                        </span>
-
-                        <h2>
-                            PLAYER EVOLUTION
-                        </h2>
-
-                        <p id="editHelp">
-                            PUT substitui os dados editáveis.
-                        </p>
-
-                    </div>
-
-
-                    <div class="http-method method-put">
-                        PUT / PATCH
-                    </div>
-
-                </header>
-
-
-                <div class="panel-body">
-
-
-                    <!-- METHOD SELECTOR -->
-
-                    <section class="method-selector">
-
-                        <button
-                            type="button"
-                            id="modePut"
-                            class="mode-btn active"
-                            onclick="selecionarEdicao('PUT')"
-                        >
-
-                            <strong>
-                                PUT
-                            </strong>
-
-                            <span>
-                                Full Evolution
-                            </span>
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            id="modePatch"
-                            class="mode-btn"
-                            onclick="selecionarEdicao('PATCH')"
-                        >
-
-                            <strong>
-                                PATCH
-                            </strong>
-
-                            <span>
-                                Partial Evolution
-                            </span>
-
-                        </button>
-
-                    </section>
-
-
-                    <section class="data-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    PLAYER PROFILE
-                                </span>
-
-                                <h3>
-                                    Atualizar jogador
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="fields-grid">
-
-                            <div class="field">
-
-                                <label for="editId">
-                                    PLAYER ID
-                                </label>
-
-                                <input
-                                    id="editId"
-                                    type="number"
-                                    min="1"
-                                    placeholder="Ex.: 12"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="editNome">
-                                    NOME
-                                </label>
-
-                                <input
-                                    id="editNome"
-                                    type="text"
-                                    maxlength="100"
-                                    placeholder="Nome"
-                                    oninput="previewEdit()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="editEmail">
-                                    E-MAIL
-                                </label>
-
-                                <input
-                                    id="editEmail"
-                                    type="email"
-                                    placeholder="email@email.com"
-                                    oninput="previewEdit()"
-                                >
-
-                            </div>
-
-
-                            <div class="field">
-
-                                <label for="editIdade">
-                                    IDADE
-                                </label>
-
-                                <input
-                                    id="editIdade"
-                                    type="number"
-                                    min="0"
-                                    max="120"
-                                    placeholder="17"
-                                    oninput="previewEdit()"
-                                >
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    <div class="content-divider"></div>
-
-
-                    <section class="payload-section">
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    GENERATED DATA
-                                </span>
-
-                                <h3>
-                                    Evolution Payload
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <pre
-                            class="payload"
-                            id="editPayload"
-                        >{}</pre>
-
-                    </section>
-
-
-                    <div class="action-row">
-
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            onclick="enviarEdicao()"
-                        >
-
-                            <span
-                                class="http-method method-put"
-                                id="editMethodBadge"
-                            >
-                                PUT
-                            </span>
-
-                            <span id="editButtonText">
-                                ENVIAR PUT
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 DELETE
-            ================================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-delete"
-            >
-
-                <header class="panel-header">
-
-                    <div>
-
-                        <span class="panel-code">
-                            TRAINING AREA // 05
-                        </span>
-
-                        <h2>
-                            ELIMINATE PLAYER
-                        </h2>
-
-                        <p>
-                            Remova definitivamente um jogador
-                            da database.
-                        </p>
-
-                    </div>
-
-
-                    <div class="http-method method-delete">
-                        DELETE
-                    </div>
-
-                </header>
-
-
-                <div class="panel-body">
-
-                    <section class="elimination-zone">
-
-                        <div class="elimination-header">
-
-                            <span>
-                                EGO ELIMINATION SYSTEM
-                            </span>
-
-                            <strong>
-                                WARNING
-                            </strong>
-
-                        </div>
-
-
-                        <div class="section-heading">
-
-                            <div>
-
-                                <span>
-                                    TARGET IDENTIFICATION
-                                </span>
-
-                                <h3>
-                                    Jogador selecionado
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label for="deleteId">
-                                PLAYER ID
-                            </label>
-
-                            <input
-                                id="deleteId"
-                                type="number"
-                                min="1"
-                                placeholder="Ex.: 15"
-                            >
-
-                        </div>
-
-
-                        <div class="action-row">
-
-                            <button
-                                type="button"
-                                class="btn btn-danger"
-                                onclick="excluir()"
-                            >
-                                ELIMINAR JOGADOR
-                            </button>
-
-                        </div>
-
-                    </section>
-
-                </div>
-
-            </section>
-
-        </div>
-
-
-        <!-- =================================================
-             CONSOLE / MATCH ANALYSIS
-        ================================================== -->
-
-        <aside
-            class="console-panel"
-            aria-label="Console de análise HTTP"
-        >
-
-            <header class="console-header">
-
-                <div>
-
-                    <span>
-                        BLUE LOCK // MATCH ANALYSIS
-                    </span>
-
-                    <h2>
-                        HTTP CONSOLE
-                    </h2>
-
-                </div>
-
-
-                <div class="console-status">
-
-                    <span class="status-dot"></span>
-
-                    <strong id="statusText">
-                        Aguardando requisição
-                    </strong>
-
-                </div>
-
-            </header>
-
-
-            <!-- REQUEST STATS -->
-
-            <section class="console-stats">
-
-                <div class="console-stat">
-
-                    <span>
-                        METHOD
-                    </span>
-
-                    <strong id="consoleMethod">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div class="console-stat">
-
-                    <span>
-                        STATUS
-                    </span>
-
-                    <strong id="consoleStatus">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div class="console-stat">
-
-                    <span>
-                        RESPONSE TIME
-                    </span>
-
-                    <strong id="consoleTime">
-                        —
-                    </strong>
-
-                </div>
-
-            </section>
-
-
-            <!-- CONSOLE NAVIGATION -->
-
-            <nav
-                class="console-navigation"
-                aria-label="Dados da requisição"
-            >
-
-                <button
-                    type="button"
-                    class="console-tab"
-                    id="requestTabBtn"
-                    onclick="abrirConsole('request')"
-                >
-                    REQUEST
-                </button>
-
-
-                <button
-                    type="button"
-                    class="console-tab active"
-                    id="responseTabBtn"
-                    onclick="abrirConsole('response')"
-                >
-                    RESPONSE
-                </button>
-
-            </nav>
-
-
-            <!-- CONSOLE CONTENT -->
-
-            <section class="console-content">
-
-                <div
-                    class="console-pane"
-                    id="console-request"
-                >
-
-                    <div class="console-pane-header">
-                        REQUEST DATA
-                    </div>
-
-                    <pre id="requestOutput">Nenhuma requisição enviada.</pre>
-
-                </div>
-
-
-                <div
-                    class="console-pane active"
-                    id="console-response"
-                >
-
-                    <div class="console-pane-header">
-                        API RESPONSE
-                    </div>
-
-                    <pre id="resultado">Carregando dados...</pre>
-
-                </div>
-
-            </section>
-
-
-            <!-- EGO CONSOLE FOOTER -->
-
-            <footer class="console-footer">
-
-                <span>
-                    EGO ENGINE
-                </span>
-
-                <span>
-                    READY FOR ANALYSIS
-                </span>
-
-            </footer>
-
-        </aside>
-
-    </main>
-
-
-    <!-- =================================================
-         FOOTER
-    ================================================== -->
-
-    <footer class="site-footer">
-
-        <div>
-
-            <strong>
-                BLUE LOCK // API LAB
-            </strong>
-
-            <span>
-                REST API TRAINING ENVIRONMENT
-            </span>
-
-        </div>
-
-
-        <div class="footer-methods">
-
-            <span>GET</span>
-            <span>POST</span>
-            <span>PUT</span>
-            <span>PATCH</span>
-            <span>DELETE</span>
-
-        </div>
-
-    </footer>
-
-</div>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-     A lógica original da API deve permanecer aqui.
-====================================================== -->
-
-<!--
-    IMPORTANTE:
-
-    Mantenha aqui o JavaScript original do projeto.
-
-    A estrutura acima preserva os principais IDs utilizados
-    pelo JavaScript atual:
-
-    baseSelect
-    basesCount
-    baseFile
-    uploadBtn
-    removeBaseBtn
-
-    getId
-    filtroNome
-    filtroEmail
-    filtroIdade
-    sort
-    order
-    getUrl
-
-    postNome
-    postEmail
-    postIdade
-    postPayload
-
-    editId
-    editNome
-    editEmail
-    editIdade
-    editPayload
-    modePut
-    modePatch
-    editMethodBadge
-    editButtonText
-    editHelp
-
-    deleteId
-
-    activeBaseName
-    statusText
-    consoleMethod
-    consoleStatus
-    consoleTime
-    requestOutput
-    resultado
-
-    Assim, o JavaScript da API pode continuar sendo usado
-    enquanto trabalhamos na camada visual.
--->
+/* Backgrounds */
+--bg-main: #050a12;
+--bg-secondary: #08111e;
+--bg-panel: #0b1625;
+--bg-card: #0e1b2c;
+--bg-input: #07111e;
+
+/* Blue Lock inspired blues */
+--blue-dark: #003b82;
+--blue: #006cff;
+--blue-light: #19a7ff;
+--blue-neon: #36b9ff;
+--blue-glow: rgba(0, 119, 255, 0.45);
+
+/* Text */
+--text-primary: #f4f9ff;
+--text-secondary: #9db0c6;
+--text-muted: #65788e;
+
+/* Status */
+--success: #35e89a;
+--warning: #ffca3a;
+--danger: #ff365f;
+--danger-dark: #a9002c;
+
+/* Borders */
+--border: rgba(109, 160, 211, 0.15);
+--border-light: rgba(133, 194, 255, 0.25);
+
+/* Shadows */
+--shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45);
+
+--blue-shadow:
+    0 0 30px rgba(0, 119, 255, 0.18);
+
+/* Radius */
+--radius-small: 6px;
+--radius: 10px;
+--radius-large: 16px;
 ```
 
-</body>
+}
 
-</html>
-<!DOCTYPE html>
+/* =========================================================
+SELECTION
+========================================================= */
 
-<html lang="pt-BR">
+::selection {
+background: var(--blue);
+color: white;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =========================================================
+SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: #03070d;
+}
+
+::-webkit-scrollbar-thumb {
+background: #12385e;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: var(--blue);
+}
+
+/* =========================================================
+APP
+========================================================= */
+
+.app {
+width: 100%;
+min-height: 100vh;
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.site-header {
+position: relative;
 
 ```
-<meta
-    name="description"
-    content="Laboratório de testes de API REST para praticar os métodos HTTP."
->
+background:
+    linear-gradient(
+        135deg,
+        #050a12 0%,
+        #071525 55%,
+        #06101d 100%
+    );
 
-<title>API Tests — Laboratório HTTP</title>
+border-bottom: 1px solid var(--border);
+
+overflow: hidden;
 ```
 
-</head>
+}
 
-<body>
+/* diagonal Blue Lock decoration */
+
+.site-header::after {
+content: "";
 
 ```
-<!-- =====================================================
-     ESTRUTURA PRINCIPAL DA APLICAÇÃO
-====================================================== -->
+position: absolute;
 
-<div class="app">
+width: 420px;
+height: 420px;
 
-    <!-- =================================================
-         CABEÇALHO
-    ================================================== -->
+right: -160px;
+top: -240px;
 
-    <header class="app-header">
+background:
+    linear-gradient(
+        135deg,
+        transparent 45%,
+        rgba(0, 119, 255, 0.18) 46%,
+        rgba(0, 119, 255, 0.18) 48%,
+        transparent 49%
+    );
 
-        <div class="header-content">
+transform: rotate(15deg);
 
-            <div class="brand">
-
-                <span class="brand-label">
-                    API TESTS
-                </span>
-
-                <h1>
-                    Laboratório HTTP
-                </h1>
-
-                <p>
-                    Um ambiente para testar, entender e acompanhar
-                    requisições HTTP em uma API REST.
-                </p>
-
-            </div>
-
-            <aside class="active-database" aria-label="Base de dados ativa">
-
-                <span class="database-label">
-                    Base ativa
-                </span>
-
-                <strong id="activeBaseName">
-                    dados.json
-                </strong>
-
-            </aside>
-
-        </div>
-
-    </header>
-
-
-    <!-- =================================================
-         NAVEGAÇÃO PRINCIPAL
-    ================================================== -->
-
-    <nav class="main-navigation" aria-label="Métodos e funcionalidades da API">
-
-        <div class="navigation-inner">
-
-            <button
-                type="button"
-                class="tab active"
-                data-tab="base"
-                onclick="abrirAba('base')"
-            >
-                <span class="tab-number">01</span>
-                <span>Base de dados</span>
-            </button>
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="get"
-                onclick="abrirAba('get')"
-            >
-                <span class="tab-method">GET</span>
-                <span>Consultar</span>
-            </button>
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="post"
-                onclick="abrirAba('post')"
-            >
-                <span class="tab-method">POST</span>
-                <span>Criar</span>
-            </button>
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="edit"
-                onclick="abrirAba('edit')"
-            >
-                <span class="tab-method">PUT</span>
-                <span>Atualizar</span>
-            </button>
-
-            <button
-                type="button"
-                class="tab"
-                data-tab="delete"
-                onclick="abrirAba('delete')"
-            >
-                <span class="tab-method">DELETE</span>
-                <span>Excluir</span>
-            </button>
-
-        </div>
-
-    </nav>
-
-
-    <!-- =================================================
-         CONTEÚDO PRINCIPAL
-    ================================================== -->
-
-    <main class="main-content">
-
-        <!-- =================================================
-             ÁREA DE OPERAÇÕES
-        ================================================== -->
-
-        <section class="workspace" aria-label="Área de operações da API">
-
-            <!-- =============================================
-                 BASE DE DADOS
-            ============================================== -->
-
-            <section
-                class="tab-panel active"
-                id="tab-base"
-                aria-labelledby="base-title"
-            >
-
-                <header class="section-header">
-
-                    <div>
-
-                        <span class="section-kicker">
-                            CONFIGURAÇÃO
-                        </span>
-
-                        <h2 id="base-title">
-                            Base de dados
-                        </h2>
-
-                        <p>
-                            Escolha a base JSON que será utilizada
-                            pelas operações da API.
-                        </p>
-
-                    </div>
-
-                    <div class="record-counter">
-                        <strong id="basesCount">0/5</strong>
-                        <span>bases anexadas</span>
-                    </div>
-
-                </header>
-
-
-                <div class="section-content">
-
-                    <form class="operation-form">
-
-                        <fieldset>
-
-                            <legend>
-                                Base ativa
-                            </legend>
-
-                            <div class="form-grid">
-
-                                <div class="field">
-
-                                    <label for="baseSelect">
-                                        Selecione a base
-                                    </label>
-
-                                    <select
-                                        id="baseSelect"
-                                        onchange="trocarBase()"
-                                    >
-                                        <option value="dados.json">
-                                            Base padrão
-                                        </option>
-                                    </select>
-
-                                </div>
-
-                                <div class="field field-action">
-
-                                    <button
-                                        type="button"
-                                        id="removeBaseBtn"
-                                        class="btn btn-danger"
-                                        onclick="removerBase()"
-                                        disabled
-                                    >
-                                        Remover base
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-
-
-                        <fieldset>
-
-                            <legend>
-                                Adicionar nova base
-                            </legend>
-
-                            <div class="form-grid">
-
-                                <div class="field">
-
-                                    <label for="baseFile">
-                                        Arquivo JSON
-                                    </label>
-
-                                    <input
-                                        type="file"
-                                        id="baseFile"
-                                        accept=".json,application/json"
-                                    >
-
-                                </div>
-
-                                <div class="field field-action">
-
-                                    <button
-                                        type="button"
-                                        id="uploadBtn"
-                                        class="btn btn-primary"
-                                        onclick="enviarBase()"
-                                    >
-                                        Anexar JSON
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-
-
-                        <aside class="information-box">
-
-                            <strong>
-                                Regras da base
-                            </strong>
-
-                            <p>
-                                É possível anexar até 5 bases adicionais,
-                                com no máximo 2 MB cada. Os registros devem
-                                possuir ID, nome, e-mail e idade.
-                            </p>
-
-                        </aside>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 GET
-            ============================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-get"
-                aria-labelledby="get-title"
-            >
-
-                <header class="section-header">
-
-                    <div>
-
-                        <span class="section-kicker">
-                            HTTP / CONSULTA
-                        </span>
-
-                        <h2 id="get-title">
-                            Consultar dados
-                        </h2>
-
-                        <p>
-                            Consulte registros, aplique filtros e
-                            organize os resultados da base.
-                        </p>
-
-                    </div>
-
-                    <span class="method-badge">
-                        GET
-                    </span>
-
-                </header>
-
-
-                <div class="section-content">
-
-                    <form class="operation-form">
-
-                        <fieldset>
-
-                            <legend>
-                                Parâmetros da consulta
-                            </legend>
-
-                            <div class="form-grid">
-
-                                <div class="field">
-
-                                    <label for="getId">
-                                        ID específico
-                                    </label>
-
-                                    <input
-                                        type="number"
-                                        id="getId"
-                                        min="1"
-                                        placeholder="Ex.: 10"
-                                        oninput="montarUrlGet()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="filtroNome">
-                                        Nome contém
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="filtroNome"
-                                        placeholder="Ex.: Maria"
-                                        oninput="montarUrlGet()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="filtroEmail">
-                                        E-mail contém
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="filtroEmail"
-                                        placeholder="@email.com"
-                                        oninput="montarUrlGet()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="filtroIdade">
-                                        Idade exata
-                                    </label>
-
-                                    <input
-                                        type="number"
-                                        id="filtroIdade"
-                                        min="0"
-                                        max="120"
-                                        placeholder="Ex.: 25"
-                                        oninput="montarUrlGet()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="sort">
-                                        Ordenar por
-                                    </label>
-
-                                    <select
-                                        id="sort"
-                                        onchange="montarUrlGet()"
-                                    >
-                                        <option value="id">
-                                            ID
-                                        </option>
-
-                                        <option value="nome">
-                                            Nome
-                                        </option>
-
-                                        <option value="email">
-                                            E-mail
-                                        </option>
-
-                                        <option value="idade">
-                                            Idade
-                                        </option>
-
-                                    </select>
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="order">
-                                        Direção
-                                    </label>
-
-                                    <select
-                                        id="order"
-                                        onchange="montarUrlGet()"
-                                    >
-                                        <option value="asc">
-                                            Crescente
-                                        </option>
-
-                                        <option value="desc">
-                                            Decrescente
-                                        </option>
-
-                                    </select>
-
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-
-
-                        <fieldset class="request-url">
-
-                            <legend>
-                                Requisição
-                            </legend>
-
-                            <label for="getUrl">
-                                URL da requisição
-                            </label>
-
-                            <div class="url-container">
-
-                                <span class="method-indicator">
-                                    GET
-                                </span>
-
-                                <input
-                                    class="url-input"
-                                    id="getUrl"
-                                    type="text"
-                                    spellcheck="false"
-                                    oninput="urlGetManual=true"
-                                >
-
-                            </div>
-
-                            <small>
-                                Você pode editar a URL manualmente para
-                                testar diferentes query parameters.
-                            </small>
-
-                        </fieldset>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                onclick="executarGet()"
-                            >
-                                Enviar requisição
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                onclick="limparGet()"
-                            >
-                                Limpar filtros
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 POST
-            ============================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-post"
-                aria-labelledby="post-title"
-            >
-
-                <header class="section-header">
-
-                    <div>
-
-                        <span class="section-kicker">
-                            HTTP / CRIAÇÃO
-                        </span>
-
-                        <h2 id="post-title">
-                            Criar usuário
-                        </h2>
-
-                        <p>
-                            Crie um novo registro enviando um objeto
-                            JSON para a API.
-                        </p>
-
-                    </div>
-
-                    <span class="method-badge">
-                        POST
-                    </span>
-
-                </header>
-
-
-                <div class="section-content">
-
-                    <form class="operation-form">
-
-                        <fieldset>
-
-                            <legend>
-                                Dados do novo usuário
-                            </legend>
-
-                            <div class="form-grid">
-
-                                <div class="field">
-
-                                    <label for="postNome">
-                                        Nome
-                                    </label>
-
-                                    <input
-                                        id="postNome"
-                                        type="text"
-                                        maxlength="100"
-                                        placeholder="Maria Silva"
-                                        oninput="previewPost()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="postEmail">
-                                        E-mail
-                                    </label>
-
-                                    <input
-                                        id="postEmail"
-                                        type="email"
-                                        placeholder="maria@email.com"
-                                        oninput="previewPost()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="postIdade">
-                                        Idade
-                                    </label>
-
-                                    <input
-                                        id="postIdade"
-                                        type="number"
-                                        min="0"
-                                        max="120"
-                                        placeholder="28"
-                                        oninput="previewPost()"
-                                    >
-
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-
-
-                        <fieldset>
-
-                            <legend>
-                                Corpo da requisição
-                            </legend>
-
-                            <pre
-                                class="payload"
-                                id="postPayload"
-                            >{}</pre>
-
-                        </fieldset>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                onclick="criar()"
-                            >
-                                Criar usuário
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 PUT / PATCH
-            ============================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-edit"
-                aria-labelledby="edit-title"
-            >
-
-                <header class="section-header">
-
-                    <div>
-
-                        <span class="section-kicker">
-                            HTTP / ATUALIZAÇÃO
-                        </span>
-
-                        <h2 id="edit-title">
-                            Atualizar usuário
-                        </h2>
-
-                        <p id="editHelp">
-                            PUT exige nome, e-mail e idade e substitui
-                            os dados editáveis do recurso.
-                        </p>
-
-                    </div>
-
-                    <span class="method-badge">
-                        PUT / PATCH
-                    </span>
-
-                </header>
-
-
-                <div class="section-content">
-
-                    <div class="method-selector">
-
-                        <button
-                            type="button"
-                            id="modePut"
-                            class="mode-btn active"
-                            onclick="selecionarEdicao('PUT')"
-                        >
-                            PUT
-                            <span>
-                                Substituição completa
-                            </span>
-                        </button>
-
-                        <button
-                            type="button"
-                            id="modePatch"
-                            class="mode-btn"
-                            onclick="selecionarEdicao('PATCH')"
-                        >
-                            PATCH
-                            <span>
-                                Atualização parcial
-                            </span>
-                        </button>
-
-                    </div>
-
-
-                    <form class="operation-form">
-
-                        <fieldset>
-
-                            <legend>
-                                Dados do registro
-                            </legend>
-
-                            <div class="form-grid">
-
-                                <div class="field">
-
-                                    <label for="editId">
-                                        ID do usuário
-                                    </label>
-
-                                    <input
-                                        id="editId"
-                                        type="number"
-                                        min="1"
-                                        placeholder="Ex.: 12"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="editNome">
-                                        Nome
-                                    </label>
-
-                                    <input
-                                        id="editNome"
-                                        type="text"
-                                        maxlength="100"
-                                        placeholder="João Silva"
-                                        oninput="previewEdit()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="editEmail">
-                                        E-mail
-                                    </label>
-
-                                    <input
-                                        id="editEmail"
-                                        type="email"
-                                        placeholder="joao@email.com"
-                                        oninput="previewEdit()"
-                                    >
-
-                                </div>
-
-
-                                <div class="field">
-
-                                    <label for="editIdade">
-                                        Idade
-                                    </label>
-
-                                    <input
-                                        id="editIdade"
-                                        type="number"
-                                        min="0"
-                                        max="120"
-                                        placeholder="28"
-                                        oninput="previewEdit()"
-                                    >
-
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-
-
-                        <fieldset>
-
-                            <legend>
-                                Corpo da requisição
-                            </legend>
-
-                            <pre
-                                class="payload"
-                                id="editPayload"
-                            >{}</pre>
-
-                        </fieldset>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                onclick="enviarEdicao()"
-                            >
-
-                                <span id="editButtonText">
-                                    Enviar PUT
-                                </span>
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 DELETE
-            ============================================== -->
-
-            <section
-                class="tab-panel"
-                id="tab-delete"
-                aria-labelledby="delete-title"
-            >
-
-                <header class="section-header">
-
-                    <div>
-
-                        <span class="section-kicker">
-                            HTTP / EXCLUSÃO
-                        </span>
-
-                        <h2 id="delete-title">
-                            Excluir usuário
-                        </h2>
-
-                        <p>
-                            Remova um registro da base informando
-                            seu identificador.
-                        </p>
-
-                    </div>
-
-                    <span class="method-badge method-danger">
-                        DELETE
-                    </span>
-
-                </header>
-
-
-                <div class="section-content">
-
-                    <form class="operation-form">
-
-                        <fieldset class="danger-fieldset">
-
-                            <legend>
-                                Registro a excluir
-                            </legend>
-
-                            <div class="field">
-
-                                <label for="deleteId">
-                                    ID do usuário
-                                </label>
-
-                                <input
-                                    id="deleteId"
-                                    type="number"
-                                    min="1"
-                                    placeholder="Ex.: 15"
-                                >
-
-                            </div>
-
-                            <div class="form-actions">
-
-                                <button
-                                    type="button"
-                                    class="btn btn-danger"
-                                    onclick="excluir()"
-                                >
-                                    Excluir usuário
-                                </button>
-
-                            </div>
-
-                        </fieldset>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-        </section>
-
-
-        <!-- =================================================
-             CONSOLE HTTP
-        ================================================== -->
-
-        <aside
-            class="http-console card"
-            aria-label="Console de requisições HTTP"
-        >
-
-            <header class="console-header">
-
-                <div>
-
-                    <span class="section-kicker">
-                        MONITORAMENTO
-                    </span>
-
-                    <h2>
-                        Console HTTP
-                    </h2>
-
-                </div>
-
-                <strong id="statusText">
-                    Aguardando requisição
-                </strong>
-
-            </header>
-
-
-            <!-- =============================================
-                 RESUMO DA REQUISIÇÃO
-            ============================================== -->
-
-            <div class="console-summary">
-
-                <div class="console-stat">
-
-                    <span>
-                        Método
-                    </span>
-
-                    <strong id="consoleMethod">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div class="console-stat">
-
-                    <span>
-                        Status
-                    </span>
-
-                    <strong id="consoleStatus">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div class="console-stat">
-
-                    <span>
-                        Tempo
-                    </span>
-
-                    <strong id="consoleTime">
-                        —
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- =============================================
-                 ABAS DO CONSOLE
-            ============================================== -->
-
-            <div class="console-navigation">
-
-                <button
-                    type="button"
-                    class="console-tab"
-                    id="requestTabBtn"
-                    onclick="abrirConsole('request')"
-                >
-                    Requisição
-                </button>
-
-                <button
-                    type="button"
-                    class="console-tab active"
-                    id="responseTabBtn"
-                    onclick="abrirConsole('response')"
-                >
-                    Resposta
-                </button>
-
-            </div>
-
-
-            <!-- =============================================
-                 CONTEÚDO DO CONSOLE
-            ============================================== -->
-
-            <div class="console-content">
-
-                <div
-                    class="console-pane"
-                    id="console-request"
-                >
-
-                    <pre id="requestOutput">Nenhuma requisição enviada.</pre>
-
-                </div>
-
-
-                <div
-                    class="console-pane active"
-                    id="console-response"
-                >
-
-                    <pre id="resultado">Carregando bases disponíveis...</pre>
-
-                </div>
-
-            </div>
-
-        </aside>
-
-    </main>
-
-
-    <!-- =================================================
-         RODAPÉ
-    ================================================== -->
-
-    <footer class="app-footer">
-
-        <p>
-            API Tests
-            <span>•</span>
-            Laboratório de APIs REST
-        </p>
-
-        <p>
-            GET · POST · PUT · PATCH · DELETE
-        </p>
-
-    </footer>
-
-</div>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-     A lógica existente será mantida nesta etapa.
-====================================================== -->
-
-<script>
-    const API='api.php';
-    let editMode='PUT';
-    let urlGetManual=false;
-
-    function valor(id){
-        return document.getElementById(id).value.trim();
-    }
-
-    function baseAtual(){
-        return document.getElementById('baseSelect').value || 'dados.json';
-    }
-
-    function abrirAba(nome){
-        document
-            .querySelectorAll('.tab')
-            .forEach(x =>
-                x.classList.toggle(
-                    'active',
-                    x.dataset.tab === nome
-                )
-            );
-
-        document
-            .querySelectorAll('.tab-panel')
-            .forEach(x =>
-                x.classList.remove('active')
-            );
-
-        document
-            .getElementById('tab-' + nome)
-            .classList.add('active');
-    }
-
-    function abrirConsole(nome){
-        document
-            .querySelectorAll('.console-tab')
-            .forEach(x =>
-                x.classList.remove('active')
-            );
-
-        document
-            .querySelectorAll('.console-pane')
-            .forEach(x =>
-                x.classList.remove('active')
-            );
-
-        document
-            .getElementById(nome + 'TabBtn')
-            .classList.add('active');
-
-        document
-            .getElementById('console-' + nome)
-            .classList.add('active');
-    }
-
-    function mostrar(dados){
-        document.getElementById('resultado').textContent =
-            typeof dados === 'string'
-                ? dados
-                : JSON.stringify(dados, null, 2);
-    }
-
-    function definirStatus(texto, tipo=''){
-        const s = document.getElementById('statusText');
-
-        s.textContent = texto;
-        s.className = tipo;
-    }
-
-    function urlApi(params={}){
-        const q = new URLSearchParams({
-            base: baseAtual(),
-            ...params
-        });
-
-        return API + '?' + q.toString();
-    }
-
-    function montarUrlGet(){
-        urlGetManual = false;
-
-        const p = {};
-
-        if(valor('getId')){
-            p.id = valor('getId');
-        }else{
-
-            if(valor('filtroNome'))
-                p.nome = valor('filtroNome');
-
-            if(valor('filtroEmail'))
-                p.email = valor('filtroEmail');
-
-            if(valor('filtroIdade'))
-                p.idade = valor('filtroIdade');
-
-            p.sort = valor('sort');
-            p.order = valor('order');
-        }
-
-        document.getElementById('getUrl').value = urlApi(p);
-    }
-
-    function limparGet(){
-
-        [
-            'getId',
-            'filtroNome',
-            'filtroEmail',
-            'filtroIdade'
-        ].forEach(id =>
-            document.getElementById(id).value = ''
-        );
-
-        document.getElementById('sort').value = 'id';
-        document.getElementById('order').value = 'asc';
-
-        montarUrlGet();
-    }
-
-    function formatBody(body){
-
-        if(!body)
-            return '(sem corpo)';
-
-        try{
-            return JSON.stringify(
-                JSON.parse(body),
-                null,
-                2
-            );
-        }catch{
-            return body;
-        }
-    }
-
-    async function requisicao(url, opcoes={}){
-
-        const metodo = opcoes.method || 'GET';
-        const inicio = performance.now();
-
-        definirStatus('Enviando...');
-        abrirConsole('response');
-
-        document.getElementById('consoleMethod').textContent = metodo;
-        document.getElementById('consoleStatus').textContent = '...';
-        document.getElementById('consoleTime').textContent = '...';
-
-        document.getElementById('requestOutput').textContent =
-            metodo + ' ' + url +
-            '\n\nHeaders:\n' +
-            JSON.stringify(
-                opcoes.headers || {},
-                null,
-                2
-            ) +
-            '\n\nBody:\n' +
-            formatBody(opcoes.body);
-
-        try{
-
-            const resposta = await fetch(url, opcoes);
-            const texto = await resposta.text();
-            const tempo = Math.round(
-                performance.now() - inicio
-            );
-
-            let dados;
-
-            try{
-                dados = JSON.parse(texto);
-            }catch{
-                dados = texto;
-            }
-
-            definirStatus(
-                resposta.status +
-                ' ' +
-                (resposta.ok ? 'Sucesso' : 'Erro'),
-                resposta.ok ? 'ok' : 'error'
-            );
-
-            document.getElementById('consoleStatus').textContent =
-                resposta.status +
-                ' ' +
-                resposta.statusText;
-
-            document.getElementById('consoleTime').textContent =
-                tempo + ' ms';
-
-            mostrar(dados);
-
-            return {
-                resposta,
-                dados
-            };
-
-        }catch(e){
-
-            const tempo = Math.round(
-                performance.now() - inicio
-            );
-
-            definirStatus(
-                'Falha de conexão',
-                'error'
-            );
-
-            document.getElementById('consoleStatus').textContent =
-                'Falha';
-
-            document.getElementById('consoleTime').textContent =
-                tempo + ' ms';
-
-            mostrar({
-                erro: e.message
-            });
-
-            return null;
-        }
-    }
-
-    async function carregarBases(baseParaSelecionar=null){
-
-        try{
-
-            const r = await fetch(
-                API + '?action=bases'
-            );
-
-            const texto = await r.text();
-
-            let d;
-
-            try{
-                d = JSON.parse(texto);
-            }catch{
-                throw new Error(
-                    'Resposta inválida ao listar bases: ' +
-                    texto
-                );
-            }
-
-            if(!r.ok){
-
-                definirStatus(
-                    'Erro ao carregar bases',
-                    'error'
-                );
-
-                mostrar(d);
-
-                return;
-            }
-
-            const s =
-                document.getElementById('baseSelect');
-
-            const anterior =
-                baseParaSelecionar ||
-                s.value ||
-                'dados.json';
-
-            s.innerHTML = '';
-
-            d.bases.forEach(b => {
-
-                const o =
-                    document.createElement('option');
-
-                o.value = b.id;
-
-                o.textContent =
-                    b.padrao
-                        ? 'Base padrão (dados.json)'
-                        : b.arquivo;
-
-                s.appendChild(o);
-            });
-
-            s.value =
-                d.bases.some(
-                    b => b.id === anterior
-                )
-                    ? anterior
-                    : 'dados.json';
-
-            document.getElementById('basesCount')
-                .textContent =
-                d.uploads_utilizados +
-                '/' +
-                d.max_uploads;
-
-            document.getElementById('uploadBtn')
-                .disabled =
-                d.uploads_utilizados >=
-                d.max_uploads;
-
-            atualizarEstadoBase();
-            montarUrlGet();
-
-            if(!baseParaSelecionar){
-
-                definirStatus(
-                    'Bases carregadas',
-                    'ok'
-                );
-
-                mostrar({
-                    mensagem:
-                        'Selecione uma aba para começar.',
-                    base_ativa:
-                        baseAtual(),
-                    bases_disponiveis:
-                        d.bases
-                });
-            }
-
-        }catch(e){
-
-            definirStatus(
-                'Falha ao carregar bases',
-                'error'
-            );
-
-            mostrar({
-                erro: e.message
-            });
-        }
-    }
-
-    function atualizarEstadoBase(){
-
-        document.getElementById(
-            'removeBaseBtn'
-        ).disabled =
-            baseAtual() === 'dados.json';
-
-        document.getElementById(
-            'activeBaseName'
-        ).textContent =
-            baseAtual();
-    }
-
-    function trocarBase(){
-
-        atualizarEstadoBase();
-        montarUrlGet();
-
-        definirStatus(
-            'Base selecionada',
-            'ok'
-        );
-
-        mostrar({
-            mensagem:
-                'As próximas requisições usarão esta base.',
-            base:
-                baseAtual()
-        });
-    }
-
-    async function enviarBase(){
-
-        const input =
-            document.getElementById('baseFile');
-
-        if(!input.files.length){
-
-            definirStatus(
-                'Selecione um JSON',
-                'error'
-            );
-
-            mostrar({
-                erro:
-                    'Escolha um arquivo .json antes de anexar.'
-            });
-
-            return;
-        }
-
-        const fd = new FormData();
-
-        fd.append(
-            'base',
-            input.files[0]
-        );
-
-        const res = await requisicao(
-            API + '?action=upload-base',
-            {
-                method: 'POST',
-                body: fd
-            }
-        );
-
-        if(res?.resposta.ok){
-
-            input.value = '';
-
-            await carregarBases(
-                res.dados.base.id
-            );
-        }
-    }
-
-    async function removerBase(){
-
-        const b = baseAtual();
-
-        if(
-            b === 'dados.json' ||
-            !confirm(
-                'Remover a base "' +
-                b +
-                '"? Esta ação exclui o arquivo do servidor.'
-            )
-        )
-            return;
-
-        const res = await requisicao(
-            API +
-            '?action=delete-base&base=' +
-            encodeURIComponent(b),
-            {
-                method: 'DELETE'
-            }
-        );
-
-        if(res?.resposta.ok)
-            await carregarBases('dados.json');
-    }
-
-    function executarGet(){
-
-        let url = valor('getUrl');
-
-        if(!url){
-
-            montarUrlGet();
-
-            url = valor('getUrl');
-        }
-
-        requisicao(url);
-    }
-
-    function previewPost(){
-
-        const u = {
-            nome:
-                valor('postNome'),
-
-            email:
-                valor('postEmail'),
-
-            idade:
-                valor('postIdade') === ''
-                    ? null
-                    : Number(
-                        valor('postIdade')
-                    )
-        };
-
-        document.getElementById(
-            'postPayload'
-        ).textContent =
-            JSON.stringify(
-                u,
-                null,
-                2
-            );
-    }
-
-    function criar(){
-
-        const u = {
-            nome:
-                valor('postNome'),
-
-            email:
-                valor('postEmail'),
-
-            idade:
-                valor('postIdade') === ''
-                    ? null
-                    : Number(
-                        valor('postIdade')
-                    )
-        };
-
-        requisicao(
-            urlApi(),
-            {
-                method: 'POST',
-
-                headers: {
-                    'Content-Type':
-                        'application/json'
-                },
-
-                body:
-                    JSON.stringify(u)
-            }
-        );
-    }
-
-    function selecionarEdicao(m){
-
-        editMode = m;
-
-        document.getElementById(
-            'modePut'
-        ).classList.toggle(
-            'active',
-            m === 'PUT'
-        );
-
-        document.getElementById(
-            'modePatch'
-        ).classList.toggle(
-            'active',
-            m === 'PATCH'
-        );
-
-        document.getElementById(
-            'editButtonText'
-        ).textContent =
-            'Enviar ' + m;
-
-        document.getElementById(
-            'editHelp'
-        ).textContent =
-            m === 'PUT'
-                ? 'PUT exige nome, e-mail e idade e substitui os dados editáveis do recurso.'
-                : 'PATCH envia somente os campos preenchidos, preservando os demais.';
-
-        previewEdit();
-    }
-
-    function editBody(){
-
-        if(editMode === 'PUT'){
-
-            return {
-                nome:
-                    valor('editNome'),
-
-                email:
-                    valor('editEmail'),
-
-                idade:
-                    valor('editIdade') === ''
-                        ? null
-                        : Number(
-                            valor('editIdade')
-                        )
-            };
-        }
-
-        const u = {};
-
-        if(valor('editNome'))
-            u.nome = valor('editNome');
-
-        if(valor('editEmail'))
-            u.email = valor('editEmail');
-
-        if(valor('editIdade') !== '')
-            u.idade =
-                Number(
-                    valor('editIdade')
-                );
-
-        return u;
-    }
-
-    function previewEdit(){
-
-        document.getElementById(
-            'editPayload'
-        ).textContent =
-            JSON.stringify(
-                editBody(),
-                null,
-                2
-            );
-    }
-
-    function enviarEdicao(){
-
-        const id =
-            valor('editId');
-
-        if(!id){
-
-            definirStatus(
-                'Informe um ID',
-                'error'
-            );
-
-            mostrar({
-                erro:
-                    'Informe o ID que deseja atualizar.'
-            });
-
-            return;
-        }
-
-        requisicao(
-            urlApi({id}),
-            {
-                method: editMode,
-
-                headers: {
-                    'Content-Type':
-                        'application/json'
-                },
-
-                body:
-                    JSON.stringify(
-                        editBody()
-                    )
-            }
-        );
-    }
-
-    function excluir(){
-
-        const id =
-            valor('deleteId');
-
-        if(!id){
-
-            definirStatus(
-                'Informe um ID',
-                'error'
-            );
-
-            mostrar({
-                erro:
-                    'Informe o ID que deseja excluir.'
-            });
-
-            return;
-        }
-
-        if(
-            !confirm(
-                'Confirma a exclusão do usuário ID ' +
-                id +
-                ' da base ' +
-                baseAtual() +
-                '?'
-            )
-        )
-            return;
-
-        requisicao(
-            urlApi({id}),
-            {
-                method: 'DELETE'
-            }
-        );
-    }
-
-    previewPost();
-    previewEdit();
-    carregarBases();
-</script>
+pointer-events: none;
 ```
 
-</body>
+}
 
-</html>
+.header-inner {
+width: min(1500px, 94%);
+
+```
+margin: auto;
+
+min-height: 115px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 30px;
+```
+
+}
+
+/* =========================================================
+BRAND
+========================================================= */
+
+.brand {
+display: flex;
+
+```
+align-items: center;
+
+gap: 18px;
+```
+
+}
+
+.brand-mark {
+width: 62px;
+height: 62px;
+
+```
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+background:
+    linear-gradient(
+        145deg,
+        var(--blue),
+        var(--blue-dark)
+    );
+
+border: 1px solid rgba(78, 178, 255, 0.55);
+
+color: white;
+
+font-size: 21px;
+font-weight: 900;
+
+letter-spacing: -1px;
+
+clip-path: polygon(
+    0 15%,
+    82% 0,
+    100% 20%,
+    100% 85%,
+    18% 100%,
+    0 80%
+);
+
+box-shadow:
+    0 0 25px rgba(0, 119, 255, 0.35);
+```
+
+}
+
+.brand-information {
+display: flex;
+flex-direction: column;
+}
+
+.brand-overline {
+color: var(--blue-light);
+
+```
+font-size: 10px;
+
+font-weight: 800;
+
+letter-spacing: 3px;
+```
+
+}
+
+.brand-information h1 {
+margin-top: 2px;
+
+```
+font-size: clamp(28px, 4vw, 42px);
+
+line-height: 1;
+
+font-weight: 950;
+
+letter-spacing: -1.5px;
+
+text-transform: uppercase;
+```
+
+}
+
+.brand-information p {
+margin-top: 7px;
+
+```
+color: var(--text-secondary);
+
+font-size: 12px;
+
+letter-spacing: 1px;
+```
+
+}
+
+/* =========================================================
+SYSTEM STATUS
+========================================================= */
+
+.system-status {
+display: flex;
+
+```
+align-items: center;
+
+gap: 10px;
+
+padding: 10px 15px;
+
+background: rgba(4, 13, 24, 0.7);
+
+border: 1px solid var(--border);
+
+clip-path: polygon(
+    7px 0,
+    100% 0,
+    100% calc(100% - 7px),
+    calc(100% - 7px) 100%,
+    0 100%,
+    0 7px
+);
+```
+
+}
+
+.status-indicator,
+.status-dot {
+width: 8px;
+height: 8px;
+
+```
+border-radius: 50%;
+
+background: var(--success);
+
+box-shadow:
+    0 0 10px var(--success);
+
+animation: pulseStatus 2s infinite;
+```
+
+}
+
+@keyframes pulseStatus {
+
+```
+0%,
+100% {
+    opacity: 1;
+    transform: scale(1);
+}
+
+50% {
+    opacity: 0.55;
+    transform: scale(0.8);
+}
+```
+
+}
+
+.system-status div {
+display: flex;
+flex-direction: column;
+}
+
+.status-label {
+color: var(--text-muted);
+
+```
+font-size: 8px;
+
+font-weight: 800;
+
+letter-spacing: 2px;
+```
+
+}
+
+.system-status strong {
+color: var(--success);
+
+```
+font-size: 11px;
+
+letter-spacing: 1px;
+```
+
+}
+
+/* =========================================================
+PROJECT BANNER
+========================================================= */
+
+.project-banner {
+position: relative;
+
+```
+width: min(1500px, 94%);
+
+margin: 25px auto 0;
+
+min-height: 190px;
+
+padding: 34px 38px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 40px;
+
+background:
+    linear-gradient(
+        115deg,
+        rgba(10, 30, 53, 0.96),
+        rgba(5, 13, 24, 0.97)
+    );
+
+border: 1px solid var(--border);
+
+overflow: hidden;
+
+box-shadow: var(--shadow);
+```
+
+}
+
+/* giant diagonal decoration */
+
+.project-banner::before {
+content: "";
+
+```
+position: absolute;
+
+right: -80px;
+top: -100px;
+
+width: 500px;
+height: 300px;
+
+background:
+    linear-gradient(
+        135deg,
+        transparent 48%,
+        rgba(0, 119, 255, 0.12) 49%,
+        rgba(0, 119, 255, 0.12) 51%,
+        transparent 52%
+    );
+
+transform: rotate(-8deg);
+```
+
+}
+
+.project-banner::after {
+content: "BL";
+
+```
+position: absolute;
+
+right: 35px;
+bottom: -45px;
+
+font-size: 180px;
+
+font-weight: 1000;
+
+line-height: 1;
+
+color: rgba(255, 255, 255, 0.025);
+
+pointer-events: none;
+```
+
+}
+
+.banner-content {
+position: relative;
+z-index: 2;
+}
+
+.banner-label {
+color: var(--blue-light);
+
+```
+font-size: 10px;
+
+font-weight: 900;
+
+letter-spacing: 3px;
+```
+
+}
+
+.banner-content h2 {
+margin-top: 9px;
+
+```
+max-width: 750px;
+
+font-size: clamp(30px, 4vw, 52px);
+
+line-height: 1.02;
+
+font-weight: 950;
+
+letter-spacing: -2px;
+
+text-transform: uppercase;
+```
+
+}
+
+.banner-content h2 span {
+color: var(--blue-light);
+
+```
+text-shadow:
+    0 0 20px rgba(25, 167, 255, 0.25);
+```
+
+}
+
+.banner-content p {
+max-width: 650px;
+
+```
+margin-top: 13px;
+
+color: var(--text-secondary);
+
+font-size: 13px;
+```
+
+}
+
+.active-database {
+position: relative;
+z-index: 3;
+
+```
+min-width: 210px;
+
+padding: 18px;
+
+background: rgba(3, 10, 18, 0.75);
+
+border-left: 3px solid var(--blue);
+
+box-shadow:
+    inset 0 0 30px rgba(0, 119, 255, 0.05);
+```
+
+}
+
+.active-database span {
+display: block;
+
+```
+color: var(--text-muted);
+
+font-size: 9px;
+
+font-weight: 800;
+
+letter-spacing: 2px;
+```
+
+}
+
+.active-database strong {
+display: block;
+
+```
+margin-top: 5px;
+
+color: var(--blue-light);
+
+font-size: 15px;
+
+word-break: break-all;
+```
+
+}
+
+/* =========================================================
+MAIN NAVIGATION
+========================================================= */
+
+.main-navigation {
+width: min(1500px, 94%);
+
+```
+margin: 20px auto 0;
+
+background: var(--bg-secondary);
+
+border: 1px solid var(--border);
+```
+
+}
+
+.navigation-header {
+min-height: 42px;
+
+```
+padding: 0 20px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+border-bottom: 1px solid var(--border);
+
+background: rgba(255, 255, 255, 0.015);
+```
+
+}
+
+.navigation-header span {
+color: var(--blue-light);
+
+```
+font-size: 9px;
+
+font-weight: 900;
+
+letter-spacing: 2px;
+```
+
+}
+
+.navigation-header small {
+color: var(--text-muted);
+
+```
+font-size: 8px;
+
+letter-spacing: 1.5px;
+```
+
+}
+
+.navigation-tabs {
+display: grid;
+
+```
+grid-template-columns:
+    repeat(5, 1fr);
+```
+
+}
+
+.tab {
+position: relative;
+
+```
+min-height: 76px;
+
+padding: 12px 18px;
+
+display: flex;
+
+align-items: center;
+
+gap: 13px;
+
+border: 0;
+
+border-right: 1px solid var(--border);
+
+background: transparent;
+
+color: var(--text-secondary);
+
+text-align: left;
+
+cursor: pointer;
+
+transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+```
+
+}
+
+.tab:last-child {
+border-right: 0;
+}
+
+.tab:hover {
+background: rgba(0, 119, 255, 0.06);
+
+```
+color: white;
+```
+
+}
+
+.tab.active {
+background:
+linear-gradient(
+135deg,
+rgba(0, 119, 255, 0.16),
+rgba(0, 119, 255, 0.035)
+);
+
+```
+color: white;
+```
+
+}
+
+.tab.active::after {
+content: "";
+
+```
+position: absolute;
+
+left: 0;
+right: 0;
+bottom: 0;
+
+height: 3px;
+
+background:
+    linear-gradient(
+        90deg,
+        var(--blue-dark),
+        var(--blue-light)
+    );
+
+box-shadow:
+    0 0 12px var(--blue-glow);
+```
+
+}
+
+.tab-index {
+color: var(--text-muted);
+
+```
+font-size: 9px;
+
+font-weight: 900;
+
+letter-spacing: 1px;
+```
+
+}
+
+.tab.active .tab-index {
+color: var(--blue-light);
+}
+
+.tab-content {
+display: flex;
+
+```
+flex-direction: column;
+
+gap: 2px;
+```
+
+}
+
+.tab-content strong {
+font-size: 12px;
+
+```
+font-weight: 900;
+
+letter-spacing: 0.5px;
+```
+
+}
+
+.tab-content small {
+color: var(--text-muted);
+
+```
+font-size: 9px;
+```
+
+}
+
+/* =========================================================
+MAIN CONTENT
+========================================================= */
+
+.main-content {
+width: min(1500px, 94%);
+
+```
+margin: 20px auto;
+
+display: grid;
+
+grid-template-columns:
+    minmax(0, 1.6fr)
+    minmax(360px, 0.8fr);
+
+gap: 20px;
+
+align-items: start;
+```
+
+}
+
+/* =========================================================
+WORKSPACE
+========================================================= */
+
+.workspace {
+min-width: 0;
+}
+
+/* =========================================================
+TAB PANEL
+========================================================= */
+
+.tab-panel {
+display: none;
+
+```
+background:
+    linear-gradient(
+        145deg,
+        rgba(12, 25, 42, 0.97),
+        rgba(7, 15, 26, 0.98)
+    );
+
+border: 1px solid var(--border);
+
+box-shadow: var(--shadow);
+
+overflow: hidden;
+```
+
+}
+
+.tab-panel.active {
+display: block;
+
+```
+animation: panelEnter 0.25s ease;
+```
+
+}
+
+@keyframes panelEnter {
+
+```
+from {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+```
+
+}
+
+/* =========================================================
+PANEL HEADER
+========================================================= */
+
+.panel-header {
+position: relative;
+
+```
+padding: 30px 32px;
+
+display: flex;
+
+align-items: flex-start;
+
+justify-content: space-between;
+
+gap: 30px;
+
+border-bottom: 1px solid var(--border);
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(0, 119, 255, 0.06),
+        transparent 60%
+    );
+
+overflow: hidden;
+```
+
+}
+
+.panel-header::after {
+content: "";
+
+```
+position: absolute;
+
+right: -20px;
+top: -80px;
+
+width: 240px;
+height: 180px;
+
+border: 1px solid rgba(0, 119, 255, 0.10);
+
+transform: rotate(35deg);
+```
+
+}
+
+.panel-code {
+display: block;
+
+```
+margin-bottom: 7px;
+
+color: var(--blue-light);
+
+font-size: 9px;
+
+font-weight: 900;
+
+letter-spacing: 2px;
+```
+
+}
+
+.panel-header h2 {
+position: relative;
+
+```
+z-index: 2;
+
+font-size: clamp(23px, 3vw, 34px);
+
+font-weight: 950;
+
+letter-spacing: -1px;
+
+text-transform: uppercase;
+```
+
+}
+
+.panel-header p {
+position: relative;
+
+```
+z-index: 2;
+
+max-width: 600px;
+
+margin-top: 7px;
+
+color: var(--text-secondary);
+
+font-size: 12px;
+```
+
+}
+
+.panel-number {
+color: rgba(255, 255, 255, 0.05);
+
+```
+font-size: 80px;
+
+font-weight: 1000;
+
+line-height: 0.8;
+
+user-select: none;
+```
+
+}
+
+/* =========================================================
+HTTP METHOD BADGES
+========================================================= */
+
+.http-method {
+flex-shrink: 0;
+
+```
+position: relative;
+
+z-index: 4;
+
+padding: 7px 12px;
+
+border: 1px solid;
+
+font-size: 10px;
+
+font-weight: 950;
+
+letter-spacing: 1.5px;
+```
+
+}
+
+.method-get {
+color: #41b6ff;
+
+```
+border-color: rgba(65, 182, 255, 0.35);
+
+background: rgba(65, 182, 255, 0.08);
+```
+
+}
+
+.method-post {
+color: #43e5a0;
+
+```
+border-color: rgba(67, 229, 160, 0.35);
+
+background: rgba(67, 229, 160, 0.07);
+```
+
+}
+
+.method-put {
+color: #ffd166;
+
+```
+border-color: rgba(255, 209, 102, 0.35);
+
+background: rgba(255, 209, 102, 0.07);
+```
+
+}
+
+.method-delete {
+color: #ff5274;
+
+```
+border-color: rgba(255, 82, 116, 0.35);
+
+background: rgba(255, 82, 116, 0.07);
+```
+
+}
+
+/* =========================================================
+PANEL BODY
+========================================================= */
+
+.panel-body {
+padding: 30px;
+}
+
+/* =========================================================
+SECTION
+========================================================= */
+
+.data-section,
+.request-section,
+.payload-section {
+width: 100%;
+}
+
+.section-heading {
+margin-bottom: 20px;
+
+```
+display: flex;
+
+align-items: flex-start;
+
+justify-content: space-between;
+
+gap: 20px;
+```
+
+}
+
+.section-heading > div:first-child {
+display: flex;
+
+```
+flex-direction: column;
+```
+
+}
+
+.section-heading span {
+color: var(--blue-light);
+
+```
+font-size: 8px;
+
+font-weight: 900;
+
+letter-spacing: 2px;
+```
+
+}
+
+.section-heading h3 {
+margin-top: 4px;
+
+```
+font-size: 17px;
+
+font-weight: 850;
+
+text-transform: uppercase;
+```
+
+}
+
+.data-count {
+padding: 7px 10px;
+
+```
+color: var(--blue-light);
+
+background: rgba(0, 119, 255, 0.08);
+
+border: 1px solid rgba(0, 119, 255, 0.2);
+
+font-size: 10px;
+```
+
+}
+
+/* =========================================================
+CONTENT DIVIDER
+========================================================= */
+
+.content-divider {
+width: 100%;
+
+```
+height: 1px;
+
+margin: 28px 0;
+
+background:
+    linear-gradient(
+        90deg,
+        var(--border-light),
+        transparent
+    );
+```
+
+}
+
+/* =========================================================
+FORM GRID
+========================================================= */
+
+.fields-grid {
+display: grid;
+
+```
+grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+gap: 18px;
+```
+
+}
+
+.upload-grid {
+display: grid;
+
+```
+grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+gap: 18px;
+
+align-items: end;
+```
+
+}
+
+/* =========================================================
+FIELD
+========================================================= */
+
+.field {
+display: flex;
+
+```
+flex-direction: column;
+
+gap: 7px;
+```
+
+}
+
+.field label {
+color: #b9cadc;
+
+```
+font-size: 9px;
+
+font-weight: 850;
+
+letter-spacing: 1.3px;
+
+text-transform: uppercase;
+```
+
+}
+
+.field input,
+.field select,
+.url-input {
+width: 100%;
+
+```
+min-height: 45px;
+
+padding: 0 13px;
+
+border: 1px solid var(--border);
+
+outline: none;
+
+background:
+    linear-gradient(
+        180deg,
+        #091625,
+        #07111d
+    );
+
+color: var(--text-primary);
+
+font-family: inherit;
+
+font-size: 12px;
+
+border-radius: var(--radius-small);
+
+transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+```
+
+}
+
+.field input:hover,
+.field select:hover,
+.url-input:hover {
+border-color: rgba(95, 169, 235, 0.28);
+}
+
+.field input:focus,
+.field select:focus,
+.url-input:focus {
+border-color: var(--blue);
+
+```
+background: #081727;
+
+box-shadow:
+    0 0 0 3px rgba(0, 119, 255, 0.10),
+    0 0 20px rgba(0, 119, 255, 0.08);
+```
+
+}
+
+.field input::placeholder,
+.url-input::placeholder {
+color: #50657a;
+}
+
+.field select {
+cursor: pointer;
+}
+
+.field-help {
+margin-top: 8px;
+
+```
+color: var(--text-muted);
+
+font-size: 10px;
+
+line-height: 1.6;
+```
+
+}
+
+/* =========================================================
+FILE INPUT
+========================================================= */
+
+input[type="file"] {
+padding: 10px;
+
+```
+cursor: pointer;
+```
+
+}
+
+input[type="file"]::file-selector-button {
+margin-right: 10px;
+
+```
+padding: 6px 10px;
+
+border: 1px solid rgba(0, 119, 255, 0.3);
+
+background: rgba(0, 119, 255, 0.08);
+
+color: var(--blue-light);
+
+font-family: inherit;
+
+font-size: 10px;
+
+font-weight: 800;
+
+cursor: pointer;
+```
+
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+.btn {
+min-height: 44px;
+
+```
+padding: 0 17px;
+
+border: 1px solid transparent;
+
+border-radius: var(--radius-small);
+
+font-family: inherit;
+
+font-size: 10px;
+
+font-weight: 900;
+
+letter-spacing: 1px;
+
+cursor: pointer;
+
+transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+```
+
+}
+
+.btn:hover:not(:disabled) {
+transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+transform: translateY(0);
+}
+
+.btn:disabled {
+opacity: 0.35;
+
+```
+cursor: not-allowed;
+```
+
+}
+
+.btn-primary {
+background:
+linear-gradient(
+135deg,
+#087cff,
+#0050bc
+);
+
+```
+border-color: #198bff;
+
+color: white;
+
+box-shadow:
+    0 7px 20px rgba(0, 102, 255, 0.20);
+```
+
+}
+
+.btn-primary:hover:not(:disabled) {
+box-shadow:
+0 10px 30px rgba(0, 119, 255, 0.35);
+}
+
+.btn-secondary {
+background: #0c1b2c;
+
+```
+border-color: var(--border);
+
+color: var(--text-secondary);
+```
+
+}
+
+.btn-secondary:hover:not(:disabled) {
+color: white;
+
+```
+border-color: var(--border-light);
+```
+
+}
+
+.btn-danger {
+background:
+linear-gradient(
+135deg,
+#d91e48,
+#950b2d
+);
+
+```
+border-color: #f33a63;
+
+color: white;
+
+box-shadow:
+    0 7px 20px rgba(255, 35, 84, 0.14);
+```
+
+}
+
+.btn-danger:hover:not(:disabled) {
+box-shadow:
+0 10px 28px rgba(255, 35, 84, 0.28);
+}
+
+/* =========================================================
+ACTION ROW
+========================================================= */
+
+.action-row {
+margin-top: 25px;
+
+```
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+
+flex-wrap: wrap;
+```
+
+}
+
+/* =========================================================
+REQUEST BUILDER
+========================================================= */
+
+.request-url {
+display: flex;
+
+```
+align-items: stretch;
+
+gap: 0;
+
+border: 1px solid var(--border);
+
+background: #06101c;
+
+border-radius: var(--radius-small);
+
+overflow: hidden;
+```
+
+}
+
+.request-url .http-method {
+display: flex;
+
+```
+align-items: center;
+
+justify-content: center;
+
+min-width: 72px;
+
+border: 0;
+
+border-right: 1px solid var(--border);
+```
+
+}
+
+.url-input {
+border: 0;
+
+```
+border-radius: 0;
+
+background: transparent;
+
+font-family:
+    "Cascadia Code",
+    "Consolas",
+    monospace;
+
+font-size: 11px;
+```
+
+}
+
+.url-input:focus {
+box-shadow: none;
+
+```
+border-color: transparent;
+```
+
+}
+
+/* =========================================================
+PAYLOAD
+========================================================= */
+
+.payload {
+min-height: 130px;
+
+```
+max-height: 320px;
+
+padding: 18px;
+
+overflow: auto;
+
+background:
+    linear-gradient(
+        135deg,
+        #050c15,
+        #071321
+    );
+
+border: 1px solid var(--border);
+
+border-left: 3px solid var(--blue);
+
+border-radius: var(--radius-small);
+
+color: #8fd1ff;
+
+font-family:
+    "Cascadia Code",
+    "Consolas",
+    monospace;
+
+font-size: 11px;
+
+line-height: 1.7;
+
+white-space: pre-wrap;
+
+box-shadow:
+    inset 0 0 30px rgba(0, 119, 255, 0.035);
+```
+
+}
+
+.payload-label {
+color: var(--text-muted) !important;
+
+```
+font-size: 8px !important;
+
+letter-spacing: 1px !important;
+```
+
+}
+
+/* =========================================================
+EGO MESSAGE
+========================================================= */
+
+.ego-message {
+position: relative;
+
+```
+margin-top: 28px;
+
+padding: 20px 22px;
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(0, 119, 255, 0.09),
+        transparent
+    );
+
+border-left: 3px solid var(--blue);
+
+overflow: hidden;
+```
+
+}
+
+.ego-message::after {
+content: "EGO";
+
+```
+position: absolute;
+
+right: 12px;
+bottom: -25px;
+
+color: rgba(255, 255, 255, 0.025);
+
+font-size: 80px;
+
+font-weight: 1000;
+```
+
+}
+
+.ego-label {
+color: var(--blue-light);
+
+```
+font-size: 8px;
+
+font-weight: 900;
+
+letter-spacing: 2px;
+```
+
+}
+
+.ego-message p {
+position: relative;
+
+```
+z-index: 2;
+
+margin-top: 8px;
+
+max-width: 700px;
+
+color: #b9cde0;
+
+font-size: 12px;
+
+font-style: italic;
+```
+
+}
+
+/* =========================================================
+METHOD SELECTOR
+========================================================= */
+
+.method-selector {
+margin-bottom: 28px;
+
+```
+display: grid;
+
+grid-template-columns: repeat(2, 1fr);
+
+gap: 10px;
+```
+
+}
+
+.mode-btn {
+min-height: 72px;
+
+```
+padding: 13px 16px;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: flex-start;
+
+justify-content: center;
+
+gap: 3px;
+
+background: #081321;
+
+border: 1px solid var(--border);
+
+color: var(--text-secondary);
+
+cursor: pointer;
+
+text-align: left;
+
+transition: 0.2s ease;
+```
+
+}
+
+.mode-btn strong {
+font-size: 13px;
+
+```
+color: white;
+```
+
+}
+
+.mode-btn span {
+font-size: 9px;
+
+```
+color: var(--text-muted);
+```
+
+}
+
+.mode-btn:hover {
+border-color: rgba(0, 119, 255, 0.35);
+}
+
+.mode-btn.active {
+background:
+linear-gradient(
+135deg,
+rgba(0, 119, 255, 0.16),
+rgba(0, 119, 255, 0.04)
+);
+
+```
+border-color: var(--blue);
+
+box-shadow:
+    0 0 20px rgba(0, 119, 255, 0.08);
+```
+
+}
+
+.mode-btn.active strong {
+color: var(--blue-light);
+}
+
+/* =========================================================
+ELIMINATION ZONE
+========================================================= */
+
+.elimination-zone {
+position: relative;
+
+```
+padding: 28px;
+
+background:
+    linear-gradient(
+        135deg,
+        rgba(100, 0, 30, 0.18),
+        rgba(10, 12, 20, 0.9)
+    );
+
+border: 1px solid rgba(255, 54, 95, 0.18);
+
+overflow: hidden;
+```
+
+}
+
+.elimination-zone::before {
+content: "ELIMINATE";
+
+```
+position: absolute;
+
+right: -30px;
+bottom: -45px;
+
+font-size: 90px;
+
+font-weight: 1000;
+
+color: rgba(255, 54, 95, 0.025);
+
+transform: rotate(-8deg);
+
+pointer-events: none;
+```
+
+}
+
+.elimination-header {
+margin-bottom: 30px;
+
+```
+padding-bottom: 15px;
+
+display: flex;
+
+justify-content: space-between;
+
+border-bottom: 1px solid rgba(255, 54, 95, 0.15);
+```
+
+}
+
+.elimination-header span {
+color: #ff5274;
+
+```
+font-size: 9px;
+
+font-weight: 900;
+
+letter-spacing: 2px;
+```
+
+}
+
+.elimination-header strong {
+color: #ff5274;
+
+```
+font-size: 9px;
+
+letter-spacing: 2px;
+```
+
+}
+
+/* =========================================================
+CONSOLE
+========================================================= */
+
+.console-panel {
+position: sticky;
+
+```
+top: 20px;
+
+min-width: 0;
+
+background:
+    linear-gradient(
+        145deg,
+        #091522,
+        #050c15
+    );
+
+border: 1px solid var(--border);
+
+box-shadow: var(--shadow);
+
+overflow: hidden;
+```
+
+}
+
+.console-header {
+padding: 21px;
+
+```
+display: flex;
+
+align-items: flex-start;
+
+justify-content: space-between;
+
+gap: 15px;
+
+border-bottom: 1px solid var(--border);
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(0, 119, 255, 0.07),
+        transparent
+    );
+```
+
+}
+
+.console-header > div:first-child {
+display: flex;
+
+```
+flex-direction: column;
+```
+
+}
+
+.console-header span {
+color: var(--blue-light);
+
+```
+font-size: 8px;
+
+font-weight: 900;
+
+letter-spacing: 2px;
+```
+
+}
+
+.console-header h2 {
+margin-top: 4px;
+
+```
+font-size: 18px;
+
+font-weight: 900;
+
+letter-spacing: 0.5px;
+```
+
+}
+
+.console-status {
+display: flex !important;
+
+```
+flex-direction: row !important;
+
+align-items: center;
+
+gap: 7px;
+```
+
+}
+
+.console-status strong {
+color: var(--text-secondary);
+
+```
+font-size: 8px;
+
+font-weight: 700;
+
+letter-spacing: 0.5px;
+```
+
+}
+
+/* =========================================================
+CONSOLE STATS
+========================================================= */
+
+.console-stats {
+display: grid;
+
+```
+grid-template-columns: repeat(3, 1fr);
+
+border-bottom: 1px solid var(--border);
+```
+
+}
+
+.console-stat {
+min-width: 0;
+
+```
+padding: 15px;
+
+border-right: 1px solid var(--border);
+```
+
+}
+
+.console-stat:last-child {
+border-right: 0;
+}
+
+.console-stat span {
+display: block;
+
+```
+color: var(--text-muted);
+
+font-size: 7px;
+
+font-weight: 900;
+
+letter-spacing: 1.5px;
+```
+
+}
+
+.console-stat strong {
+display: block;
+
+```
+margin-top: 4px;
+
+color: white;
+
+font-size: 12px;
+
+overflow: hidden;
+
+text-overflow: ellipsis;
+
+white-space: nowrap;
+```
+
+}
+
+#consoleStatus {
+color: var(--blue-light);
+}
+
+/* =========================================================
+CONSOLE NAVIGATION
+========================================================= */
+
+.console-navigation {
+display: grid;
+
+```
+grid-template-columns: repeat(2, 1fr);
+
+border-bottom: 1px solid var(--border);
+```
+
+}
+
+.console-tab {
+min-height: 45px;
+
+```
+border: 0;
+
+border-right: 1px solid var(--border);
+
+background: transparent;
+
+color: var(--text-muted);
+
+font-size: 9px;
+
+font-weight: 900;
+
+letter-spacing: 1px;
+
+cursor: pointer;
+
+transition: 0.2s ease;
+```
+
+}
+
+.console-tab:last-child {
+border-right: 0;
+}
+
+.console-tab:hover {
+color: white;
+
+```
+background: rgba(0, 119, 255, 0.05);
+```
+
+}
+
+.console-tab.active {
+color: var(--blue-light);
+
+```
+background: rgba(0, 119, 255, 0.08);
+
+box-shadow:
+    inset 0 -2px 0 var(--blue);
+```
+
+}
+
+/* =========================================================
+CONSOLE CONTENT
+========================================================= */
+
+.console-content {
+min-height: 420px;
+
+```
+background:
+    repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.012) 0,
+        rgba(255, 255, 255, 0.012) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+```
+
+}
+
+.console-pane {
+display: none;
+
+```
+height: 420px;
+
+flex-direction: column;
+```
+
+}
+
+.console-pane.active {
+display: flex;
+}
+
+.console-pane-header {
+padding: 10px 15px;
+
+```
+border-bottom: 1px solid var(--border);
+
+color: var(--text-muted);
+
+font-size: 8px;
+
+font-weight: 900;
+
+letter-spacing: 1.5px;
+```
+
+}
+
+.console-pane pre {
+flex: 1;
+
+```
+margin: 0;
+
+padding: 18px;
+
+overflow: auto;
+
+color: #9ed8ff;
+
+font-family:
+    "Cascadia Code",
+    "Consolas",
+    monospace;
+
+font-size: 10px;
+
+line-height: 1.7;
+
+white-space: pre-wrap;
+
+word-break: break-word;
+```
+
+}
+
+/* =========================================================
+CONSOLE FOOTER
+========================================================= */
+
+.console-footer {
+min-height: 40px;
+
+```
+padding: 0 15px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+border-top: 1px solid var(--border);
+
+color: var(--text-muted);
+
+font-size: 7px;
+
+font-weight: 800;
+
+letter-spacing: 1.2px;
+```
+
+}
+
+/* =========================================================
+STATUS STATES
+========================================================= */
+
+#statusText.ok {
+color: var(--success);
+}
+
+#statusText.error {
+color: var(--danger);
+}
+
+#statusText.warning {
+color: var(--warning);
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.site-footer {
+width: min(1500px, 94%);
+
+```
+margin: 35px auto 25px;
+
+padding: 22px 0;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 20px;
+
+border-top: 1px solid var(--border);
+```
+
+}
+
+.site-footer > div:first-child {
+display: flex;
+
+```
+flex-direction: column;
+
+gap: 3px;
+```
+
+}
+
+.site-footer strong {
+color: white;
+
+```
+font-size: 10px;
+
+letter-spacing: 1.5px;
+```
+
+}
+
+.site-footer span {
+color: var(--text-muted);
+
+```
+font-size: 8px;
+
+letter-spacing: 1px;
+```
+
+}
+
+.footer-methods {
+display: flex;
+
+```
+align-items: center;
+
+gap: 12px;
+```
+
+}
+
+.footer-methods span {
+color: var(--blue-light);
+
+```
+font-size: 8px;
+
+font-weight: 900;
+```
+
+}
+
+/* =========================================================
+FOCUS ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+outline: 2px solid var(--blue-light);
+
+```
+outline-offset: 2px;
+```
+
+}
+
+/* =========================================================
+RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+```
+.main-content {
+    grid-template-columns: 1fr;
+}
+
+
+.console-panel {
+    position: relative;
+
+    top: auto;
+}
+
+
+.navigation-tabs {
+    grid-template-columns:
+        repeat(3, 1fr);
+}
+
+
+.tab:nth-child(3) {
+    border-right: 0;
+}
+
+
+.tab:nth-child(4),
+.tab:nth-child(5) {
+    border-top: 1px solid var(--border);
+}
+```
+
+}
+
+/* =========================================================
+RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+
+```
+.header-inner {
+    padding: 20px 0;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+}
+
+
+.system-status {
+    width: 100%;
+}
+
+
+.project-banner {
+    padding: 25px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.active-database {
+    width: 100%;
+}
+
+
+.navigation-tabs {
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.tab {
+    border-right: 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.tab:nth-child(3),
+.tab:nth-child(4),
+.tab:nth-child(5) {
+    border-top: 0;
+}
+
+
+.panel-header {
+    padding: 24px;
+
+    flex-direction: column;
+}
+
+
+.panel-number {
+    display: none;
+}
+
+
+.panel-body {
+    padding: 22px;
+}
+
+
+.fields-grid {
+    grid-template-columns: 1fr;
+}
+
+
+.upload-grid {
+    grid-template-columns: 1fr;
+}
+
+
+.method-selector {
+    grid-template-columns: 1fr;
+}
+
+
+.console-stats {
+    grid-template-columns: 1fr;
+}
+
+
+.console-stat {
+    border-right: 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.console-stat:last-child {
+    border-bottom: 0;
+}
+
+
+.site-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+}
+
+
+.footer-methods {
+    flex-wrap: wrap;
+}
+```
+
+}
+
+/* =========================================================
+RESPONSIVE — SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+```
+.brand-information h1 {
+    font-size: 29px;
+}
+
+
+.banner-content h2 {
+    font-size: 30px;
+}
+
+
+.navigation-tabs {
+    grid-template-columns: 1fr;
+}
+
+
+.tab {
+    min-height: 64px;
+}
+
+
+.panel-header h2 {
+    font-size: 23px;
+}
+
+
+.request-url {
+    flex-direction: column;
+}
+
+
+.request-url .http-method {
+    min-height: 38px;
+
+    border-right: 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.action-row {
+    flex-direction: column;
+
+    align-items: stretch;
+}
+
+
+.action-row .btn {
+    width: 100%;
+}
+```
+
+}
+
+/* =========================================================
+REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+```
+*,
+*::before,
+*::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+}
+```
+
+}
